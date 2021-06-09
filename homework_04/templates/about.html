@@ -1,11 +1,14 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>About</title>
 </head>
-<body>
-    <h1>Это моя первая страница на Flask!</h1>
-    <p>P.S. не люблю фронтенд :( </p>
-</body>
+{% block body %}
+    <div>
+        <h1>Это мое первое приложение на Flask!</h1>
+        <p>P.S. не люблю фронтенд :( </p>
+    </div>
+{% endblock %}
 </html>
