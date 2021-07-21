@@ -29,9 +29,9 @@ from sqlalchemy.orm import (
 )
 
 SQLALCHEMY_CONN_URI = "postgresql+asyncpg://user:password@localhost/project"
-engine = create_async_engine(SQLALCHEMY_CONN_URI, echo=True)
-# PG_CONN_URI = os.environ.get("SQLALCHEMY_PG_CONN_URI") or "postgresql+asyncpg://postgres:password@localhost/postgres"
-# engine = create_async_engine(PG_CONN_URI, echo=True)
+# engine = create_async_engine(SQLALCHEMY_CONN_URI, echo=True)
+PG_CONN_URI = os.environ.get("SQLALCHEMY_PG_CONN_URI") or "postgresql+asyncpg://postgres:password@localhost/postgres"
+engine = create_async_engine(PG_CONN_URI, echo=True)
 
 Base = declarative_base()
 
@@ -43,7 +43,7 @@ class User(Base):
     username = Column(String, nullable=False, default="", server_default="")
     email = Column(String, nullable=True, default="", server_default="")
 
-    post = relationship("Post", back_populates="user")
+    posts = relationship("Post", back_populates="user")
     __mapper_args__ = {"eager_defaults": True}
 
     def __str__(self):
@@ -61,7 +61,7 @@ class Post(Base):
     body = Column(String, nullable=False, default="", server_default="")
 
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
-    user = relationship("User", back_populates="post")
+    user = relationship("User", back_populates="posts")
 
     def __str__(self):
         return f"{self.__class__.__name__}" \
@@ -86,12 +86,7 @@ async def add(users, posts):
         async with session.begin():
             for user in users:
                 new_user = User(id=user['id'], name=user['name'], username=user['username'], email=user['email'])
-                new_user.post = []
-                for post in posts:
-                    if post['userId'] == user['id']:
-                        new_post = Post(id=post['id'], title=post['title'], body=post['body'])
-                        new_user.post.append(new_post)
                 session.add(new_user)
-
-
-
+            for post in posts:
+                new_post = Post(id=post['id'], title=post['title'], body=post['body'], user_id=post['userId'])
+                session.add(new_post)

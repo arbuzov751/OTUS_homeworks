@@ -19,7 +19,7 @@ async def task_master():
     task_users = asyncio.create_task(fetch_json(USERS_DATA_URL))
     task_posts = asyncio.create_task(fetch_json(POSTS_DATA_URL))
     data = await asyncio.gather(task_users, task_posts)
-    return data[0], data[1]
+    return data
 
 
 def main():
