@@ -25,6 +25,6 @@ async def task_master():
 def main():
     asyncio.run(task_master())
 
-
-if __name__ == "__main__":
-    main()
+#
+# if __name__ == "__main__":
+#     main()
