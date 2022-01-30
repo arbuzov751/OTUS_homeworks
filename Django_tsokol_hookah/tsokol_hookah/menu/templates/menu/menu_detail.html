@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подробнее</title>
+</head>
+<body>
+<h1>{{ object.product_name }}</h1>
+<p>Тип продукции: {{ object.type }}</p>
+<p>Цена = {{ object.price }}р</p>
+
+<a href="{% url 'menu:menu_list' %}">Назад</a>
+
+<a href="{% url 'mainapp:mainpage' %}">Главная</a>
+
+</body>
+</html>
