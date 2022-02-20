@@ -8,3 +8,7 @@ class Menu(models.Model):
 
     def __str__(self):
         return f'{self.type}: {self.product_name} = {self.price}р'
+
+
+
+

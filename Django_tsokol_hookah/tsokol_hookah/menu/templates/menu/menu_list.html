@@ -13,9 +13,18 @@
         {% for product in object_list %}
         <li>
             <a href="{% url 'menu:menu_detail' product.id %}"> {{ product }}
+            <ul style="margin-bottom: 1em; ">
+                <a href="{% url 'menu:menu_update' product.id %}"> Update Product </a>
+
+                <a href="{% url 'menu:menu_delete' product.id %}"> Delete Product</a>
+            </ul>
         </li>
         {% endfor %}
     </ul>
+</div>
+
+<div class="menu-products">
+    <a href="{% url 'menu:menu_create' %}">New Product</a>
 </div>
 
 <a href="{% url 'mainapp:mainpage' %}">Главная</a>

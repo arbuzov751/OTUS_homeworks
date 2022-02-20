@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание продукта</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+
+<a href="{% url 'menu:menu_list' %}">Назад</a>
+
+<a href="{% url 'mainapp:mainpage' %}">Главная</a>
+
+</body>
+</html>

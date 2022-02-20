@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление продукта</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete" style="font-size:35px; font-weight:bold; color:#000000;">
+</form>
+
+<a href="{% url 'menu:menu_list' %}">Назад</a>
+
+<a href="{% url 'mainapp:mainpage' %}">Главная</a>
+
+</body>
+</html>

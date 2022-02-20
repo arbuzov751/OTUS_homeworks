@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from menu.models import Menu
 
 
@@ -14,12 +15,25 @@ from menu.models import Menu
 class MenuListView(ListView):
     model = Menu
 
-    # def get_queryset(self):
-    #     qs = super().get_queryset()
-    #     qs = qs.select_related().prefetch_related()
-    #     return qs
-
 
 class MenuListDetailView(DetailView):
     model = Menu
     fields = "__all__"
+
+
+class MenuCreateView(CreateView):
+    model = Menu
+    success_url = reverse_lazy('menu:menu_list')
+    fields = '__all__'
+
+
+class MenuUpdateView(UpdateView):
+    model = Menu
+    success_url = reverse_lazy('menu:menu_list')
+    fields = '__all__'
+
+
+class MenuDeleteView(DeleteView):
+    model = Menu
+    success_url = reverse_lazy('menu:menu_list')
+    fields = '__all__'

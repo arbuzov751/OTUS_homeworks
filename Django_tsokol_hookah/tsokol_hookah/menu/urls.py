@@ -23,5 +23,8 @@ app_name = 'menu'
 urlpatterns = [
     # path('menu/', menu.menu_list, name='menu_list'),
     path('', menu.MenuListView.as_view(), name='menu_list'),
+    path('create/', menu.MenuCreateView.as_view(), name='menu_create'),
+    path('update/<int:pk>/', menu.MenuUpdateView.as_view(), name='menu_update'),
+    path('delete/<int:pk>/', menu.MenuDeleteView.as_view(), name='menu_delete'),
     path('detail/<int:pk>/', menu.MenuListDetailView.as_view(), name='menu_detail'),
 ]
