@@ -48,3 +48,6 @@ jobs:
         pytest testing -s -vv -rsx
       env:
         SQLALCHEMY_PG_CONN_URI: postgresql+asyncpg://postgres:secretpassword@localhost:5432/postgres
+    - name: Test Django project
+      cd Django_tsokol_hookah/tsokol_hookah/
+      python manage.py test
